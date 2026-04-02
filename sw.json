@@ -1,0 +1,28 @@
+const CACHE_NAME = 'gps-tracker-v1';
+const ASSETS = [
+  './',
+  './index.html',
+  './app.js',
+  './manifest.json',
+  'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
+  'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+  'https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js'
+];
+
+// Instalación: Guardar archivos estáticos
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(ASSETS);
+    })
+  );
+});
+
+// Estrategia: Network First (intenta red, si falla, usa caché)
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    fetch(event.request).catch(() => {
+      return caches.match(event.request);
+    })
+  );
+});
