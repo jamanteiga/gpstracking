@@ -7,65 +7,21 @@
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="icon.png">
-    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         *, *::before, *::after { box-sizing: border-box; }
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #f4f4f9;
-            color: #333;
-            overflow: hidden;
-            height: 100vh;
-        }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f9; color: #333; overflow: hidden; height: 100vh; }
         #map { height: 60vh; width: 100%; z-index: 1; }
-        .controls {
-            padding: 15px 15px calc(30px + env(safe-area-inset-bottom));
-            background: white;
-            border-radius: 24px 24px 0 0;
-            margin-top: -30px;
-            position: relative;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            box-shadow: 0 -8px 20px rgba(0,0,0,0.15);
-        }
-        #stats {
-            background: #f0f0f5;
-            border-radius: 12px;
-            padding: 10px;
-            text-align: center;
-            min-height: 85px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        .controls { padding: 15px 15px calc(30px + env(safe-area-inset-bottom)); background: white; border-radius: 24px 24px 0 0; margin-top: -30px; position: relative; z-index: 1000; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 -8px 20px rgba(0,0,0,0.15); }
+        #stats { background: #f0f0f5; border-radius: 12px; padding: 10px; text-align: center; min-height: 85px; display: flex; flex-direction: column; justify-content: center; }
         .stat-main { font-weight: bold; font-size: 1.1rem; color: #1a1a1a; }
         .stat-area { font-size: 0.95rem; color: #28a745; font-weight: 700; margin-top: 4px; }
-        .btn {
-            padding: 18px;
-            border: none;
-            border-radius: 16px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            -webkit-tap-highlight-color: transparent;
-        }
+        .btn { padding: 18px; border: none; border-radius: 16px; font-size: 1.1rem; font-weight: bold; cursor: pointer; width: 100%; -webkit-tap-highlight-color: transparent; }
         .btn-start { background: #28a745; color: white; }
         .btn-stop { background: #dc3545; color: white; }
         #exportContainer { display: none; gap: 8px; }
         .btn-export { background: #007bff; color: white; padding: 12px; font-size: 0.9rem; flex: 1; }
-        select {
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            background: #fff;
-        }
+        select { padding: 12px; border-radius: 10px; font-size: 1rem; border: 1px solid #ccc; background: #fff; }
     </style>
 </head>
 <body>
@@ -77,22 +33,18 @@
                 <span id="val-ha">0.000</span> Ha | <span id="val-fer">0.00</span> Ferrados
             </div>
         </div>
-        
         <select id="modeSelect">
             <option value="veh">🚗 Vehículo (Cada 1s)</option>
             <option value="tra_p">🚜 Tractor (Ruta - 5s)</option>
             <option value="tra_a">🚜 Tractor (Área - 5s)</option>
             <option value="walk">🚶 A pie (Área - Alta precisión)</option>
         </select>
-
         <button id="actionBtn" class="btn btn-start">INICIAR RASTREO</button>
-
         <div id="exportContainer">
             <button id="btnKML" class="btn btn-export">📥 Exportar KML</button>
             <button id="btnCSV" class="btn btn-export">📥 Exportar CSV</button>
         </div>
     </div>
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
     <script src="app.js"></script>
