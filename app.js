@@ -186,7 +186,7 @@ function startTracking() {
             const p = {
                 lat: pos.coords.latitude,
                 lng: pos.coords.longitude,
-                alt: pos.coords.altitude || 0,
+                alt: (pos.coords.altitude || 0) / 10,
                 vel: pos.coords.speed    || 0,
                 ts:  now
             };
